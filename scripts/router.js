@@ -2,10 +2,11 @@
 
 export const router = {};
 
+
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function() {
+router.setState = function(pageType) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -35,4 +36,83 @@ router.setState = function() {
    *    1. You may add as many helper functions in this file as you like
    *    2. You may modify the parameters of setState() as much as you like
    */
+
+  let body = document.querySelector('body'); 
+  let header = document.querySelector('h1'); 
+
+
+  if(pageType == "settings"){
+    //Changing the page appearance
+    body.classList.add("settings");
+    header.innerHTML = "Settings"; //Changing header
+
+    const state = { 'page_id': 1 }
+    const title = ''
+    const url = '#settings'
+
+    history.pushState(state, title, url)
+  }
+  else if(pageType == "home"){
+    body.className = ""; //(Remove class from <body> element to reset to default home page style)
+    header.innerHTML = "Journal Entries"
+
+    const state = { 'page_id': 2 }
+    const title = ''
+    const url = ' '
+    
+    history.pushState(state, title, url)
+  }
+
+
+
 }
+
+
+let settingsCog = document.querySelector('img');
+let header = document.querySelector('h1');
+
+//This is the event handler for the settings cog button being clicked. 
+settingsCog.addEventListener('click', () => {
+  /* ((Moved this block to be inside router.setState() method)). AKA just refactoring cuz they probably want it that way?
+  //let body = document.querySelector('body'); 
+  //body.classList.add("settings"); //This line adds <body> to the "settings" class so that the style is now "settings" style.
+  //let header = document.querySelector('h1'); 
+  //header.innerHTML = "Settings"; //Changing header
+  */
+
+  router.setState("settings");
+
+});
+
+
+header.addEventListener('click', () => {
+  router.setState("home");
+});
+
+
+//This event handles using the back arrow button in the top left
+window.addEventListener('popstate', (event) => {
+  //history.back();
+  history.go();
+  
+  console.log("hi");
+
+  ////// TO DO, the forward button doesn't work... I don't really understand the forward vs  back button how it's handled??////////
+
+});
+
+
+// Event handler for the individual journal entry pages
+let thingy = document.querySelectorAll('journal-entry');
+
+/*
+thingy.addEventListener('click', () => {  /////////TO DO, this throws an error. I suspect it's because journal-entry elements aren't loaded right away? Need to wait until DOMCONTENTLOADED
+  console.log("hi");
+
+});
+*/
+
+// document.querySelectorAll('journal-entry').length) == 10
+
+
+
