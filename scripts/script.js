@@ -18,14 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
       //Event handler for clicking on the journal entries
       document.querySelectorAll('journal-entry').forEach(item => {
         item.addEventListener('click', event => {
           //console.log(item.entry);
           router.setState("single-entry"); //Call router to change page appearance
+          
+          let entryPageElement = document.querySelector('entry-page');  //Need to delete/create a new entry-page element as per tip 4 of part 1a. (because otherwise the images stay in the entry-page element)
+          entryPageElement.remove();
 
-          let entryPageElement = document.querySelector('entry-page'); 
-          entryPageElement.entry = item.entry
+          let newEntryPageElement = document.createElement('entry-page');
+          document.querySelector('body').appendChild(newEntryPageElement);
+          newEntryPageElement.entry = item.entry
+  
 
         })
       })

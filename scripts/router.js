@@ -64,6 +64,7 @@ router.setState = function(pageType) {
   }
   else if(pageType == "single-entry"){
     body.classList.add("single-entry");
+    
   }
 
 
