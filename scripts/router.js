@@ -43,6 +43,7 @@ router.setState = function(pageType) {
 
   if(pageType == "settings"){
     //Changing the page appearance
+    body.className = ""; //Need to reset so that going to settings from a single entry makes the page empty
     body.classList.add("settings");
     header.innerHTML = "Settings"; //Changing header
 
@@ -64,7 +65,7 @@ router.setState = function(pageType) {
   }
   else if(pageType == "single-entry"){
     body.classList.add("single-entry");
-    
+
   }
 
 
