@@ -101,18 +101,3 @@ window.addEventListener('popstate', (event) => {
 
 });
 
-
-// Event handler for the individual journal entry pages
-let thingy = document.querySelectorAll('journal-entry');
-
-/*
-thingy.addEventListener('click', () => {  /////////TO DO, this throws an error. I suspect it's because journal-entry elements aren't loaded right away? Need to wait until DOMCONTENTLOADED
-  console.log("hi");
-
-});
-*/
-
-// document.querySelectorAll('journal-entry').length) == 10
-
-
-

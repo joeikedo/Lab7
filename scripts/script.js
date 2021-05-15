@@ -3,6 +3,7 @@
 import { router } from './router.js'; // Router imported so you can use it to manipulate your SPA app here
 const setState = router.setState;
 
+
 // Make sure you register your service worker here too
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,7 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
         newPost.entry = entry;
         document.querySelector('main').appendChild(newPost);
       });
+
+
+
+      //Yayyy, ok so this sets up an event listener but only works for the first journal entry on the home page
+      let entry = document.querySelector('journal-entry');
+
+      entry.addEventListener('click', () => {
+        console.log('hi');
+
+      });
+
+
+
+
     });
-
-
 });
+
