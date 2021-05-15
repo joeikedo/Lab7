@@ -21,8 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
       //Event handler for clicking on the journal entries
       document.querySelectorAll('journal-entry').forEach(item => {
         item.addEventListener('click', event => {
-          console.log('hi');
-          router.setState("single-entry");
+          //console.log(item.entry);
+          router.setState("single-entry"); //Call router to change page appearance
+
+          let entryPageElement = document.querySelector('entry-page'); 
+          entryPageElement.entry = item.entry
+
         })
       })
 
