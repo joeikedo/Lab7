@@ -62,6 +62,9 @@ router.setState = function(pageType) {
     
     history.pushState(state, title, url)
   }
+  else if(pageType == "single-entry"){
+    body.classList.add("single-entry");
+  }
 
 
 

@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-      //Yayyy, ok so this sets up an event listener but only works for the first journal entry on the home page
-      let entry = document.querySelector('journal-entry');
-
-      entry.addEventListener('click', () => {
-        console.log('hi');
-
-      });
+      //Event handler for clicking on the journal entries
+      document.querySelectorAll('journal-entry').forEach(item => {
+        item.addEventListener('click', event => {
+          console.log('hi');
+          router.setState("single-entry");
+        })
+      })
 
 
 
