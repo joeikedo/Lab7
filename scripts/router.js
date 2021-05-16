@@ -6,8 +6,9 @@ export const router = {};
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-//Note: entryNumber parameter is only used for single-entry display
-router.setState = function(pageType, entryNumber) {
+//Note: entryNumber parameter is only used for single-entry display, the historyCheck parameter is there because for back/forward
+//arrow calls to router.setState(), we don't want to push to history 
+router.setState = function(pageType, entryNumber, historyCheck) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -52,7 +53,10 @@ router.setState = function(pageType, entryNumber) {
     const title = ''
     const url = '#settings'
 
-    history.pushState(state, title, url)
+    if(historyCheck != 'false'){
+      history.pushState(state, title, url)
+    }
+
   }
   else if(pageType == "home"){
     body.className = ""; //(Remove class from <body> element to reset to default home page style)
@@ -62,9 +66,12 @@ router.setState = function(pageType, entryNumber) {
     const title = ''
     const url = ' '
     
-    history.pushState(state, title, url)
+    if(historyCheck != 'false'){
+      history.pushState(state, title, url)
+    }
   }
   else if(pageType == "single-entry"){
+    body.className = "";
     body.classList.add("single-entry");
     header.innerHTML = "Entry " + entryNumber;
 
@@ -72,45 +79,10 @@ router.setState = function(pageType, entryNumber) {
     const title = ''
     const url = '#entry' + entryNumber
 
-    history.pushState(state, title, url)
+    if(historyCheck != 'false'){
+      history.pushState(state, title, url)
+    }
   }
-
-  
-  
-  /*//Warning: Dumb
-
-  
-  else if(pageType == 'http://127.0.0.1:5500/#settings'){
-    router.setState('settings');
-  }
-  // else if(pageType == 'http://127.0.0.1:5500/#entry1'){
-  //   router.setState('single-entry', 1);
-  // }
-  // else if(pageType == 'http://127.0.0.1:5500/#entry2'){
-  //   router.setState('single-entry', 2);
-  // }
-  // else if(pageType == 'http://127.0.0.1:5500/#entry3'){
-  //   router.setState('single-entry', 3);
-  // }
-  // else if(pageType == 'http://127.0.0.1:5500/#entry4'){
-  //   router.setState('single-entry', 4);
-  // }
-  // else if(pageType == 'http://127.0.0.1:5500/#entry5'){
-  //   router.setState('single-entry', 5);
-  // }
-  // else if(pageType == 'http://127.0.0.1:5500/#entry6'){
-  //   router.setState('single-entry', 6);
-  // }
-  else if (pageType.includes("entry")){
-    router.setState('single-entry', pageType[pageType.length - 1]);
-    console.log(pageType[pageType.length - 1]);
-  }
-
-  else if(pageType == 'http://127.0.0.1:5500/'){
-    router.setState('home');
-  }
-  */
-
 
 }
 
@@ -131,33 +103,52 @@ header.addEventListener('click', () => {
 
 
 
-//This event handles using the back arrow button in the top left
+//This event handles using the back/ forward arrow
 window.addEventListener('popstate', (event) => {
   
   let myLocation = window.location.href;
-  location.reload();
+  
+
   console.log(myLocation);
+  let body = document.querySelector('body'); 
+  let header = document.querySelector('h1'); 
 
+  if(myLocation.includes("settings")){
+   router.setState("settings", "null", "false") //I think the issue was that you arent' supposed to push to history for back arrow things
+  }
+  else if(myLocation.includes('entry1')){
+    router.setState('single-entry', 1, "false")
+  }
+  else if(myLocation.includes('entry2')){
+    router.setState('single-entry', 2, "false")
+  }
+  else if(myLocation.includes('entry3')){
+    router.setState('single-entry', 3, "false")
+  }
+  else if(myLocation.includes('entry4')){
+    router.setState('single-entry', 4, "false")
+  }
+  else if(myLocation.includes('entry5')){
+    router.setState('single-entry', 5, "false")
+  }
+  else if(myLocation.includes('entry6')){
+    router.setState('single-entry', 6, "false")
+  }
+  else if(myLocation.includes('entry7')){
+    router.setState('single-entry', 7, "false")
+  }
+  else if(myLocation.includes('entry8')){
+    router.setState('single-entry', 8, "false")
+  }
+  else if(myLocation.includes('entry9')){
+    router.setState('single-entry', 9, "false")
+  }
+  else if(myLocation.includes('entry10')){
+    router.setState('single-entry', 10, "false")
+  }
+  else{
+    router.setState('home', 'null', 'false');
+  }
   
-  console.log('Changed screen to ' + myLocation);
-  
-  // if(myLocation.includes('settings')){
-  //   router.setState('settings');
-
-  // }else{
-  //   router.setState('home');
-  // }
-  // else if(myLocation.includes('entry')){
-  //   router.setState('single-entry', 10);
-  // }
-  // else{
-  //     router.setState("home");
-  // }
-
-  
-  //window.history.go(-1);
-  // Use urls?
-
-  ////// TO DO, the forward button doesn't work... I don't really understand the forward vs  back button how it's handled??////////
 
 });
