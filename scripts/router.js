@@ -85,13 +85,6 @@ let header = document.querySelector('h1');
 
 //This is the event handler for the settings cog button being clicked. 
 settingsCog.addEventListener('click', () => {
-  /* ((Moved this block to be inside router.setState() method)). AKA just refactoring cuz they probably want it that way?
-  //let body = document.querySelector('body'); 
-  //body.classList.add("settings"); //This line adds <body> to the "settings" class so that the style is now "settings" style.
-  //let header = document.querySelector('h1'); 
-  //header.innerHTML = "Settings"; //Changing header
-  */
-
   router.setState("settings");
 
 });
