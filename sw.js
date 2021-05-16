@@ -5,14 +5,14 @@
 //   - One for activation ( check out MDN's clients.claim() for this step )
 //   - One for fetch requests
 
-//Installation
 
+//Installation
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
-  './scripts/script.js', //I'm not sure exactly what urls I need to cache...
-  './sw.js',
-  './scripts/router.js',
-  './index.html',
+  //'./scripts/script.js', //I'm not sure exactly what urls I need to cache...
+  //'./sw.js',
+  //'./scripts/router.js',
+  //'./index.html',
   'https://cse110lab6.herokuapp.com/entries' //Is it this one?
 ];
 
@@ -48,7 +48,7 @@ self.addEventListener('fetch', function(event) {
   });
   
 
-  
+  /*
   self.addEventListener('fetch', function(event) {
     event.respondWith(
       caches.match(event.request)
@@ -82,8 +82,7 @@ self.addEventListener('fetch', function(event) {
         })
       );
   });
-
-
+*/
 
 
 
@@ -94,11 +93,11 @@ self.addEventListener('fetch', function(event) {
     self.addEventListener('activate', event => {
        event.waitUntil(clients.claim());
     });
-      
+
   
   self.addEventListener('activate', function(event) {
 
-    var cacheAllowlist = ['pages-cache-v1', 'blog-posts-cache-v1'];
+    var cacheAllowlist = ['my-site-cache-v1'];
   
     event.waitUntil(
       caches.keys().then(function(cacheNames) {
