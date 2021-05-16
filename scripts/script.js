@@ -52,13 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
           router.setState("single-entry", entryNumber); //Call router to change page appearance
           
+          
           let entryPageElement = document.querySelector('entry-page');  //Need to delete/create a new entry-page element as per tip 4 of part 1a. (because otherwise the images stay in the entry-page element)
           entryPageElement.remove();
 
           let newEntryPageElement = document.createElement('entry-page');
           document.querySelector('body').appendChild(newEntryPageElement);
           newEntryPageElement.entry = item.entry
-  
+          
           
 
         })
