@@ -100,6 +100,7 @@ window.addEventListener('popstate', (event) => {
   //history.back();
   history.go();
   
+  //Use urls?
 
   ////// TO DO, the forward button doesn't work... I don't really understand the forward vs  back button how it's handled??////////
 
