@@ -75,6 +75,41 @@ router.setState = function(pageType, entryNumber) {
     history.pushState(state, title, url)
   }
 
+  
+  
+  /*//Warning: Dumb
+
+  
+  else if(pageType == 'http://127.0.0.1:5500/#settings'){
+    router.setState('settings');
+  }
+  // else if(pageType == 'http://127.0.0.1:5500/#entry1'){
+  //   router.setState('single-entry', 1);
+  // }
+  // else if(pageType == 'http://127.0.0.1:5500/#entry2'){
+  //   router.setState('single-entry', 2);
+  // }
+  // else if(pageType == 'http://127.0.0.1:5500/#entry3'){
+  //   router.setState('single-entry', 3);
+  // }
+  // else if(pageType == 'http://127.0.0.1:5500/#entry4'){
+  //   router.setState('single-entry', 4);
+  // }
+  // else if(pageType == 'http://127.0.0.1:5500/#entry5'){
+  //   router.setState('single-entry', 5);
+  // }
+  // else if(pageType == 'http://127.0.0.1:5500/#entry6'){
+  //   router.setState('single-entry', 6);
+  // }
+  else if (pageType.includes("entry")){
+    router.setState('single-entry', pageType[pageType.length - 1]);
+    console.log(pageType[pageType.length - 1]);
+  }
+
+  else if(pageType == 'http://127.0.0.1:5500/'){
+    router.setState('home');
+  }
+  */
 
 
 }
@@ -95,14 +130,34 @@ header.addEventListener('click', () => {
 });
 
 
+
 //This event handles using the back arrow button in the top left
 window.addEventListener('popstate', (event) => {
-  //history.back();
-  history.go();
   
-  //Use urls?
+  let myLocation = window.location.href;
+  location.reload();
+  console.log(myLocation);
+
+  
+  console.log('Changed screen to ' + myLocation);
+  
+  // if(myLocation.includes('settings')){
+  //   router.setState('settings');
+
+  // }else{
+  //   router.setState('home');
+  // }
+  // else if(myLocation.includes('entry')){
+  //   router.setState('single-entry', 10);
+  // }
+  // else{
+  //     router.setState("home");
+  // }
+
+  
+  //window.history.go(-1);
+  // Use urls?
 
   ////// TO DO, the forward button doesn't work... I don't really understand the forward vs  back button how it's handled??////////
 
 });
-
