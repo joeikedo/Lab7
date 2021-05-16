@@ -6,7 +6,8 @@ export const router = {};
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function(pageType) {
+//Note: entryNumber parameter is only used for single-entry display
+router.setState = function(pageType, entryNumber) {
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -65,7 +66,13 @@ router.setState = function(pageType) {
   }
   else if(pageType == "single-entry"){
     body.classList.add("single-entry");
+    header.innerHTML = "Entry " + entryNumber;
 
+    const state = { 'page_id': entryNumber + 2 }
+    const title = ''
+    const url = '#entry' + entryNumber
+
+    history.pushState(state, title, url)
   }
 
 
